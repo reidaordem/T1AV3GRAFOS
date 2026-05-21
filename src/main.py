@@ -14,9 +14,9 @@ print(f"{lista_cordenadas[0]}")
 lista_np = ar(lista_cordenadas)
 
 array_pesos = []
-for i in range(0,n+1):
-    if i+1>= n: break
-    distancia = norm(lista_np[i]- lista_np[i+1])
+for i in range(e,n+1):
+    if i+1> n: break
+    distancia = norm(lista_np[i-1]- lista_np[i])
     array_pesos.append(distancia)
 print(array_pesos)
 array_pesos = soma_np(array_pesos)
