@@ -35,6 +35,7 @@ execute:
 python main.py
 ```
 Insira os dados no formato exigido pelo problema.
+Os dados estão dentro da pasta dados em dados.txt
 
 
 # Modelagem do problema como grafo
