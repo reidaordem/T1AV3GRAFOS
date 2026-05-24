@@ -37,19 +37,19 @@ python main.py
 Insira os dados no formato exigido pelo problema.
 
 
-## Modelagem do problema como grafo
+# Modelagem do problema como grafo
 
 O problema foi modelado como um grafo ponderado completo.
 
-# Vértices
+## Vértices
 
 Cada casa na árvore (treehouse) representa um vértice.
 
-# Arestas
+## Arestas
 
 Cada par de casas pode ser conectado por uma aresta.
 
-# Peso das arestas
+## Peso das arestas
 
 O peso corresponde à distância euclidiana entre duas casas.
 
@@ -71,7 +71,7 @@ Aplicar custo 0 às conexões já existentes.
 Executar Prim para selecionar as arestas de menor custo.
 Somar os pesos das arestas escolhidas.
 
-## Papel da fila de prioridade
+# Papel da fila de prioridade
 
 Foi utilizada uma fila de prioridade mínima indexada (IndexMinPQ).
 
@@ -81,13 +81,13 @@ selecionar rapidamente o próximo vértice mais barato;
 atualizar distâncias quando uma conexão melhor é encontrada;
 reduzir o custo total do algoritmo.
 
-## Variação de MST utilizada
+# Variação de MST utilizada
 
 Foi utilizada uma MST com arestas pré-conectadas.
 
 Algumas conexões possuem peso zero antes do algoritmo iniciar.
 
-## Complexidade
+# Complexidade
 Tempo
 
 Construção do grafo:
@@ -112,7 +112,7 @@ Estruturas auxiliares:
 
 O(n)
 
-# Casos especiais
+## Casos especiais
 Casas inicialmente conectadas.
 Conexões extras com custo zero.
 Distâncias calculadas com números reais.
