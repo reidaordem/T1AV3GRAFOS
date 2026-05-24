@@ -1,0 +1,32 @@
+Sample Input 1 Entrada
+3 1 0
+0.0 0.0
+2.0 0.0
+1.0 2.0
+
+
+Sample Output 1
+4.236067
+
+
+Sample Input 2 	Entrada
+3 1 1
+0.0 0.0
+0.5 2.0
+2.5 2.0
+1 2
+
+
+Sample Output 2	
+2.000000
+
+
+Sample Input 3 Entrada
+3 2 0
+0.0 0.0
+2.0 0.0
+1.0 2.0
+
+	
+Sample Output 3
+2.236067
