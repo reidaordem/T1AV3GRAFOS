@@ -77,10 +77,11 @@ Algumas conexões possuem peso zero antes do algoritmo iniciar.
 
 # Complexidade
 
-- Ordenação das arestas - `O(ElogV)`
+- Ordenação das arestas - `O(n*logn)`
 - Construção do grafo - `O(n²)`
 - Inicialização do Union-Find - `O(V)`
 - `find/union` em todas as arestas - `O(E)`
+- Algoritmo de Kruskal - `O(ElogV)` ou `O(ElogE)`
 
 ## Casos especiais
 Casas inicialmente conectadas.
