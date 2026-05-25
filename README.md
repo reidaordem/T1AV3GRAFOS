@@ -9,7 +9,6 @@ link - https://open.kattis.com/problems/treehouses
 - Tiago Goes
 - Bruno Cavalcante
 - Emanuel Melo
-
 ## Linguagem Utilizada
 Python
 
@@ -82,10 +81,7 @@ Algumas conexões possuem peso zero antes do algoritmo iniciar.
 - Construção do grafo - `O(n²)`
 - Inicialização do Union-Find - `O(V)`
 - `find/union` em todas as arestas - `O(E)`
-- Total - `O(ElogE)`
 
 ## Casos especiais
 Casas inicialmente conectadas.
 Conexões extras com custo zero.
-Distâncias calculadas com números reais.
-Grafo completo.

@@ -1,7 +1,5 @@
 import math
 from edge import Edge
-from edge_weighted_graph import EdgeWeightedGraph
-from kruskal_mst import KruskalMST
 from uf import UF
 
 n, e, p = map(int, input().split())
@@ -39,7 +37,7 @@ for edge in edges:
         uf.union(v, w)
         total_weight += edge.weight
         edges_used += 1
-        if edges_used == n - 1:  # We need n-1 edges total
+        if edges_used == n - 1:  
             break
 
 print("%.6f" % total_weight)
