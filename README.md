@@ -1,12 +1,10 @@
-# Treehouses
+# Trabalho Prático 1 - Unidade 3 
 
 ## Problema
 Treehouses
+link - https://open.kattis.com/problems/treehouses
 
-## Link do Problema
-https://open.kattis.com/problems/treehouses
-
-## Integrantes
+## Integrantes Grupo C
 - Evandro Nobre
 - Tiago Goes
 - Bruno Cavalcante
@@ -15,14 +13,12 @@ https://open.kattis.com/problems/treehouses
 ## Linguagem Utilizada
 Python
 
----
-
-# Como executar
+# Execução
 
 ## Requisitos
 - Python 3.10+
 
-## Executar
+## Comandos
 
 Clone o repositório:
 
@@ -32,55 +28,47 @@ cd T1AV3GRAFOS/src
 ```
 execute:
 ```bash
-python main.py
+python main.py < ../dados/entrada[1-3].txt
 ```
-Insira os dados no formato exigido pelo problema.
-Os dados estão dentro da pasta dados em dados.txt
-
 
 # Modelagem do problema como grafo
 
-O problema foi modelado como um grafo ponderado completo.
+O problema foi modelado como um grafo ponderado completo e consciste em encontrar o menor custo adicional para conectar todas as casas.
 
-## Vértices
+**Vértices** - Cada casa na árvore (treehouse) representa um vértice.
 
-Cada casa na árvore (treehouse) representa um vértice.
+**Aresta** - Cada par de casas pode ser conectado por uma aresta.
 
-## Arestas
+**Peso das arestas** - O peso corresponde ao tamanho do cabo (distância euclidiana entre duas casas).
 
-Cada par de casas pode ser conectado por uma aresta.
 
-## Peso das arestas
+## Algoritmo de Kruskal
 
-O peso corresponde à distância euclidiana entre duas casas.
+Algoritmo encontra uma árvore geradora mínima (MST) usando uma estratégia gulosa (greedy).
 
-# Casos especiais:
+A ideia central é:
+```text
+Sempre escolher a aresta de menor peso possível, desde que ela não forme ciclo.
+```
 
-As primeiras e casas já estão conectadas → custo 0.
-As conexões adicionais fornecidas na entrada também possuem custo 0.
+***passo a passo:***
+1. Ordenar todas as arestas pelo peso em ordem crescente.
+2. Começar com uma floresta:
+    - cada vértice é um componente separado.
+3. Pecorrer as arestas em ordem crescente:
+    - pega a menor aresta disponível;
+    - se ela não cria ciclo, adiciona na MST;
+    - caso contrário, descarta.
+4. Condicao de parada: `V - 1` arestas ná arvore.
 
-O objetivo é encontrar o menor custo adicional necessário para conectar todas as casas
+# Papel do Union-Find
 
-## Algoritmo utilizado
+O problema:
+```text 
+"Como saber se adicionar uma aresta forma um ciclo?"
+```
 
-Foi utilizado o algoritmo de Prim (Minimum Spanning Tree - MST).
-
-A estratégia consiste em:
-
-Construir o grafo com todas as possíveis conexões.
-Aplicar custo 0 às conexões já existentes.
-Executar Prim para selecionar as arestas de menor custo.
-Somar os pesos das arestas escolhidas.
-
-# Papel da fila de prioridade
-
-Foi utilizada uma fila de prioridade mínima indexada (IndexMinPQ).
-
-Funções principais:
-
-selecionar rapidamente o próximo vértice mais barato;
-atualizar distâncias quando uma conexão melhor é encontrada;
-reduzir o custo total do algoritmo.
+Para não ter que usar um algoritmo de busca (DFS/BFS), usa-se o Union-Find que mantém grupos de arestas já conectadas. Assim, só precisa verificar se duas arestas pertencem ao mesmo conjunto `(find(u) == find(v))`,caso pertença, a aresta é descartada, uma vez que formaria circulo.
 
 # Variação de MST utilizada
 
@@ -89,29 +77,12 @@ Foi utilizada uma MST com arestas pré-conectadas.
 Algumas conexões possuem peso zero antes do algoritmo iniciar.
 
 # Complexidade
-Tempo
 
-Construção do grafo:
-
-O(n²)
-
-Prim com fila de prioridade:
-
-O(E log V)
-
-Como o grafo é completo:
-
-O(n² log n)
-
-Memória
-
-Matriz de pesos:
-
-O(n²)
-
-Estruturas auxiliares:
-
-O(n)
+- Ordenação das arestas - `O(ElogV)`
+- Construção do grafo - `O(n²)`
+- Inicialização do Union-Find - `O(V)`
+- `find/union` em todas as arestas - `O(E)`
+- Total - `O(ElogE)`
 
 ## Casos especiais
 Casas inicialmente conectadas.

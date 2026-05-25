@@ -1,42 +1,45 @@
 import math
-
 from edge import Edge
 from edge_weighted_graph import EdgeWeightedGraph
-from prim_mst import PrimMST
+from kruskal_mst import KruskalMST
+from uf import UF
 
-n, e, p = input("").split()
-n = int(n)
-e = int(e)
-p = int(p)
+n, e, p = map(int, input().split())
 
-lista_cordenadas = [ list(map(float,input().split())) for i in range(n)]
+lista_cordenadas = [list(map(float, input().split())) for i in range(n)]
 
+edges = []
 
+uf = UF(n)
 
-matriz_pesos = [[0 for _ in range(n)] for _ in range(n)]
-for i in range(n):
-    for j in range(i+1, n):
-        if i<e and j<e:
-            distancia = 0
-        else:
-            distancia = math.dist(lista_cordenadas[i], lista_cordenadas[j])
-        matriz_pesos[i][j] = distancia
-        matriz_pesos[j][i] = distancia
+for i in range(1, e):
+    uf.union(0, i)
+
 for i in range(p):
     v, w = input("").split()
-    v = int(v)-1
-    w = int(w)-1
-    matriz_pesos[v][w] = 0
-    matriz_pesos[w][v] = 0
+    v = int(v) - 1
+    w = int(w) - 1
+    uf.union(v, w)
 
-
-graph = EdgeWeightedGraph(n)
 for i in range(n):
-    for j in range(i+1, n):
-        if i != j:
-            edge = Edge(i, j, float(matriz_pesos[i][j]))
-            graph.add_edge(edge)
-mst = PrimMST(graph)
-print("%.6f" % mst.weight())
+    for j in range(i + 1, n):
+        if not uf.connected(i, j):
+            distancia = math.dist(lista_cordenadas[i], lista_cordenadas[j])
+            edges.append(Edge(i, j, distancia))
 
-bp=1
+edges.sort()
+
+total_weight = 0
+edges_used = 0
+
+for edge in edges:
+    v = edge.either()
+    w = edge.other(v)
+    if not uf.connected(v, w):
+        uf.union(v, w)
+        total_weight += edge.weight
+        edges_used += 1
+        if edges_used == n - 1:  # We need n-1 edges total
+            break
+
+print("%.6f" % total_weight)
